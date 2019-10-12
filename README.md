@@ -22,7 +22,6 @@ To set attributes, prefix the key with @. You can also set the text value of an 
 
 ```php
 use Origin\Xml\Xml;
-
 $data = [
     'post' => [
         '@category' => 'how tos', // to set attribute use @
@@ -41,14 +40,14 @@ $xml = Xml::fromArray($data);
 This will return the following:
 
 ```xml
-    <post category="how tos">
-        <id>12345</id>
-        <title>How to create an XML block</title>
-        <body><![CDATA["A quick brown fox jumps of a lazy dog."]]></body>
-        <author>
-            <name>James</name>
-        </author>
-    </post>
+<post category="how tos">
+    <id>12345</id>
+    <title>How to create an XML block</title>
+    <body><![CDATA["A quick brown fox jumps of a lazy dog."]]></body>
+    <author>
+        <name>James</name>
+    </author>
+</post>
 ```
 
 For data which needed to be wrapped in CDATA, pass the data through `Xml::cdata($string)`.
@@ -66,20 +65,20 @@ $xml = Xml::fromArray($data,[
 Sometimes you might need to repeat the tags in XML, so you can do so like this.
 
 ```php
- $data = [
-    'charges' => [
-        'charge' => [
-            [
-                'amount' => 10,
-                'description' => 'Shipping',
-            ],
-            [
-                'amount' => 35,
-                'description' => 'Tax',
-            ],
-          ]
+$data = [
+'charges' => [
+    'charge' => [
+        [
+            'amount' => 10,
+            'description' => 'Shipping',
+        ],
+        [
+            'amount' => 35,
+            'description' => 'Tax',
+        ],
         ]
-    ];
+    ]
+];
 ```
 
 Which will output this:
@@ -101,13 +100,13 @@ Which will output this:
 Here is an example of setting attributes (prefix the key with @) and text values (set the key to @).
 
 ```php
-    $data = [
-        'task' => [
-            '@id' => 128,
-            'name' => 'Buy milk',
-            '@' => 'some text'
-        ]
-    ];
+$data = [
+    'task' => [
+        '@id' => 128,
+        'name' => 'Buy milk',
+        '@' => 'some text'
+    ]
+];
 ```
 Which gives this:
 
