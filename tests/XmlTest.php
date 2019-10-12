@@ -15,20 +15,21 @@
 namespace Origin\Test\Xml;
 
 use Origin\Xml\Xml;
+use Origin\Xml\Exception\XmlException;
 use Exception;
 
 class XmlTest extends \PHPUnit\Framework\TestCase
 {
     public function testInvalidArray()
     {
-        $this->expectException(Exception::class);
+        $this->expectException(XmlException::class);
 
         $data = [];
         Xml::fromArray($data);
     }
     public function testInvalidXml()
     {
-        $this->expectException(Exception::class);
+        $this->expectException(XmlException::class);
         Xml::toArray('<foo/><bar/>');
     }
     public function testFromArray()
@@ -249,7 +250,7 @@ class XmlTest extends \PHPUnit\Framework\TestCase
 
     public function testToArrayException()
     {
-        $this->expectException(Exception::class);
+        $this->expectException(XmlException::class);
         Xml::toArray('no xml here');
     }
 }

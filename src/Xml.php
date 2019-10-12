@@ -17,7 +17,7 @@ namespace Origin\Xml;
 
 use DOMDocument;
 use SimpleXMLElement;
-use Exception;
+use Origin\Xml\Exception\XmlException;
 
 /**
  * The XML utility is for converting arrays to XML strings and XML strings to arrays.
@@ -60,7 +60,7 @@ class Xml
     {
         // Must have root
         if (count($data) !== 1) {
-            throw new Exception('Invalid array.');
+            throw new XmlException('Invalid array.');
         }
         $defaults = [
             'version' => '1.0',
@@ -161,7 +161,12 @@ class Xml
      */
     public static function toArray(string $xml) : array
     {
-        $simpleXml = new SimpleXMLElement($xml);
+        try {
+            $simpleXml = new SimpleXMLElement($xml);
+        } catch (\Exception $e) {
+            throw new XmlException($e->getMessage());
+        }
+       
         
         $namespaces = $simpleXml->getNamespaces(true);
         $root = static::convertXml($simpleXml, null, array_merge([null => null], $namespaces));
