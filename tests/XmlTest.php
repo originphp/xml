@@ -16,7 +16,6 @@ namespace Origin\Test\Xml;
 
 use Origin\Xml\Xml;
 use Origin\Xml\Exception\XmlException;
-use Exception;
 
 class XmlTest extends \PHPUnit\Framework\TestCase
 {

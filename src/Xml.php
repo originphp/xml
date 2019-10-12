@@ -167,7 +167,6 @@ class Xml
             throw new XmlException($e->getMessage());
         }
        
-        
         $namespaces = $simpleXml->getNamespaces(true);
         $root = static::convertXml($simpleXml, null, array_merge([null => null], $namespaces));
    
