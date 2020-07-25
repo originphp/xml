@@ -56,7 +56,7 @@ class Xml
      *   - pretty: default false. Formats XML nicely
      * @return string
      */
-    public static function fromArray(array $data, array $options = []) : string
+    public static function fromArray(array $data, array $options = []): string
     {
         // Must have root
         if (count($data) !== 1) {
@@ -88,7 +88,7 @@ class Xml
      * @param array $data
      * @return void
      */
-    protected static function convertArray(DOMDocument $dom, $parent, array $data) : void
+    protected static function convertArray(DOMDocument $dom, $parent, array $data): void
     {
         $tags = [];
         // Deal with attributes/values
@@ -148,7 +148,7 @@ class Xml
      * @param string|integer $value
      * @return string
      */
-    public static function cdata($value) : string
+    public static function cdata($value): string
     {
         return '<![CDATA["'. $value .'"]]>';
     }
@@ -159,7 +159,7 @@ class Xml
      * @param string $xml
      * @return array
      */
-    public static function toArray(string $xml) : array
+    public static function toArray(string $xml): array
     {
         try {
             $simpleXml = new SimpleXMLElement($xml);
@@ -183,7 +183,7 @@ class Xml
      * @param SimpleXMLElement $simpleXml
      * @return string
      */
-    protected static function getRootName(SimpleXMLElement $simpleXml) : string
+    protected static function getRootName(SimpleXMLElement $simpleXml): string
     {
         $name = $simpleXml->getName();
         $namespaces = $simpleXml->getNamespaces();
