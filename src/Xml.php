@@ -241,7 +241,7 @@ class Xml
             return $string;
         }
 
-        if (strlen($string) > 0) {
+        if (strlen(trim($string)) > 0) {
             $data['@'] = $string;
         }
         
