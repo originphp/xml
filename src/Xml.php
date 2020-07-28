@@ -187,7 +187,7 @@ class Xml
     {
         $name = $simpleXml->getName();
         $namespaces = $simpleXml->getNamespaces();
-        if ($namespaces and ! isset($namespaces[''])) {
+        if ($namespaces && ! isset($namespaces[''])) {
             $prefix = key($namespaces);
             $name = "{$prefix}:{$name}";
         }
@@ -208,7 +208,7 @@ class Xml
         $data = [];
 
         // Handle Generic Namespace
-        if ($currentNamespace === null and $namespaces[$currentNamespace]) {
+        if ($currentNamespace === null && $namespaces[$currentNamespace]) {
             $data['xmlns:'] = $namespaces[$currentNamespace];
         }
        
@@ -226,7 +226,7 @@ class Xml
                     $data['xmlns:' . $namespace] = $xmlns;
                 }
                 if (isset($data[$name])) {
-                    if (! is_array($data[$name]) or ! isset($data[$name][0])) {
+                    if (! is_array($data[$name]) || ! isset($data[$name][0])) {
                         $data[$name] = [$data[$name]]; // repackage repeated tags
                     }
                     $data[$name][] = $array;
@@ -236,12 +236,12 @@ class Xml
             }
         }
         
-        $string = (string) $xml;
+        $string = trim((string) $xml);
         if (empty($data)) {
             return $string;
         }
 
-        if (strlen(trim($string)) > 0) {
+        if (strlen($string) > 0) {
             $data['@'] = $string;
         }
         
