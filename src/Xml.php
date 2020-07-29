@@ -109,7 +109,7 @@ class Xml
                 // handle repeated tags
                 if (is_numeric(implode('', array_keys($value)))) {
                     foreach ($value as $repeated) {
-                        if (is_string($repeated)) {
+                        if (is_scalar($repeated)) {
                             $repeated = ['@' => $repeated];
                         }
                         $node = $dom->createElement($key);
@@ -240,7 +240,7 @@ class Xml
         if (empty($data)) {
             return $string;
         }
-
+        
         if (strlen($string) > 0) {
             $data['@'] = $string;
         }
