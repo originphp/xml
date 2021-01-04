@@ -1,7 +1,7 @@
 # Xml
 
 ![license](https://img.shields.io/badge/license-MIT-brightGreen.svg)
-[![build](https://travis-ci.org/originphp/xml.svg?branch=master)](https://travis-ci.org/originphp/xml)
+[![build](https://github.com/originphp/xml/workflows/CI/badge.svg)](https://github.com/originphp/xml/actions)
 [![coverage](https://coveralls.io/repos/github/originphp/xml/badge.svg?branch=master)](https://coveralls.io/github/originphp/xml?branch=master)
 
 XML class to make making reading and writing XML easy.
