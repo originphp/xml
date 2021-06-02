@@ -53,6 +53,7 @@ class Xml
      *   - version: default: 1.0
      *   - encoding: default: UTF-8
      *   - pretty: default false. Formats XML nicely
+     *   - declaration: default:true all XML documents should start with this, but if you need to turn it off
      * @return string
      */
     public static function fromArray(array $data, array $options = []): string
@@ -65,6 +66,7 @@ class Xml
             'version' => '1.0',
             'encoding' => 'UTF-8',
             'pretty' => false,
+            'declaration' => true
         ];
         $options += $defaults;
       
@@ -75,6 +77,12 @@ class Xml
         }
     
         static::convertArray($dom, $dom, $data);
+
+        if ($options['declaration'] === false) {
+            $tmp = new DOMDocument();
+            $tmp->loadXML($dom->saveXML());
+            return $tmp->saveXML($tmp->documentElement);
+        }
 
         return $dom->saveXML();
     }

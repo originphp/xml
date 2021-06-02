@@ -124,6 +124,38 @@ class XmlTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString($needle, Xml::fromArray($data));
     }
 
+    public function testFromArrayDeclaration()
+    {
+        $data = [
+            'post' => [
+                '@category' => 'how tos', // to set attribute use @
+                'id' => 12345,
+                'title' => 'How to create an XML block',
+                'body' => Xml::cdata('A quick brown fox jumps of a lazy dog.'),
+                'author' => [
+                    'name' => 'James',
+                ],
+            ],
+        ];
+
+        $expected = '<post category="how tos"><id>12345</id><title>How to create an XML block</title><body>&lt;![CDATA["A quick brown fox jumps of a lazy dog."]]&gt;</body><author><name>James</name></author></post>';
+        $this->assertEquals($expected, Xml::fromArray($data, ['declaration'=>false]));
+
+        // Check pretty still works
+        $expected= <<<EOT
+        <post category="how tos">
+          <id>12345</id>
+          <title>How to create an XML block</title>
+          <body>&lt;![CDATA["A quick brown fox jumps of a lazy dog."]]&gt;</body>
+          <author>
+            <name>James</name>
+          </author>
+        </post>
+        EOT;
+     
+        $this->assertEquals($expected, Xml::fromArray($data, ['declaration'=>false,'pretty'=>true]));
+    }
+
     /**
      * @depends testFromArray
      */
